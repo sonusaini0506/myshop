@@ -1,7 +1,7 @@
 const GameModel = require('../models/game.model.js');
 const Gamenumber = require('../models/gamenumber.model.js');
 var moment = require('moment');
-module.exports={create,gameupdate,findGame,dashboard}
+module.exports={create,gameupdate,findGame,dashboard,findUserGame}
 async function create(req,res){
     // Validate request
     if(!req.body.mobile) {
@@ -226,7 +226,55 @@ async function gameupdate(req, res){
     
 };
 
+async function findUserGame(req,res){
+   
 
+       try{
+        var game;
+        var totalWingAmount=0;
+        var object=req.body;
+        //console.log(JSON.parse(object));
+        //var searchData=JSON.parse(object);
+        var startDate=req.body.todayDate+"T00:00:00.000+00:00";
+            var endDate=req.body.todayDate+"T23:59:59.000+00:00";
+            game =await GameModel.find({"createdAt":{$gte:startDate,$lte:endDate},"mobile":req.body.mobile}); 
+           
+            if(game.length>0){
+                for(var i=0;i<game.length;i++){
+                    if(game[i].gameResult=="WIN"){
+                        totalWingAmount +=await Number(game[i].winAmount);
+                    }
+                }
+                var resData={"status":"200",
+                "data":game,
+            "totalWingAmount":totalWingAmount}
+
+                var yesstartDate=req.body.yesturdayDate+"T00:00:00.000+00:00";
+            var yesendDate=req.body.yesturdayDate+"T23:59:59.000+00:00";
+                var createNumberModule =await Gamenumber.find({"createdAt":{$gte:yesstartDate,$lte:yesendDate}});
+if(createNumberModule.length>0){
+    resData.MonrningNumber=createNumberModule[0].numberMorning;
+    resData.numberEvening=createNumberModule[0].numberEvening;
+}else{
+    resData.MonrningNumber=0;
+    resData.numberEvening=0;
+}
+           
+    res.status(200).send(resData);
+        }else{
+            var resData={"status":"404",
+            "message":"Data not found!"}
+    res.status(409).send(resData);
+        }
+    }catch (e){
+        var resData={"status":"409",
+        "message":e}
+res.status(409).send(resData);
+    }
+    
+
+
+}
 async function findGame(req,res){
    
 
