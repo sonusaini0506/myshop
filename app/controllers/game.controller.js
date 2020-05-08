@@ -240,11 +240,7 @@ async function findUserGame(req,res){
             game =await GameModel.find({"createdAt":{$gte:startDate,$lte:endDate},"mobile":req.body.mobile}); 
            
             if(game.length>0){
-                for(var i=0;i<game.length;i++){
-                    if(game[i].gameResult=="WIN"){
-                        totalWingAmount +=await Number(game[i].winAmount);
-                    }
-                }
+                totalWingAmount=await gettotalwiningAmount();
                 var resData={"status":"200",
                 "data":game,
             "totalWingAmount":totalWingAmount}
@@ -274,6 +270,20 @@ res.status(409).send(resData);
     
 
 
+}
+async function gettotalwiningAmount(){
+    var totalWinAmount=0;
+   var  game =await GameModel.find({}); 
+     if(game.length>0){
+        for(var i=0;i<game.length;i++){
+            if(game[i].gameResult=="WIN"){
+                totalWinAmount +=await Number(game[i].winAmount);
+            }
+        }
+return await totalWinAmount
+     }else{
+         return 0
+     }   
 }
 async function findGame(req,res){
    
