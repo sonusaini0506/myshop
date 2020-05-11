@@ -397,7 +397,7 @@ async function OpenNumber(req,res){
                  var game;
                  var startDate=req.body.todayDate+"T00:00:00.000+00:00";
                  var endDate=req.body.todayDate+"T23:59:59.000+00:00";
-                 game =await GameModel.find({"createdAt":{$gte:startDate,$lte:endDate},"gameResult":"Open","gameNumber":req.body.number}); 
+                 game =await GameModel.find({"createdAt":{$gte:startDate,$lte:endDate},"gameResult":"Open","gameNumber":req.body.number,"typeAt":req.body.type}); 
                  
                       if(game.length>0){
                           for(var i=0;i<game.length;i++){
