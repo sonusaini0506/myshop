@@ -106,7 +106,9 @@ async function dashboard(req,res){
             "totalEveningPLayAmount":0,
             "totalMorningPlayAmount":0};
             }
-            var createNumberModule =await Gamenumber.find({"createdAt":{$gte:startDate,$lte:endDate}});
+            var yesstartDate=yesturday+"T00:00:00.000+00:00";
+            var yesendDate=yesturday+"T23:59:59.000+00:00";
+            var createNumberModule =await Gamenumber.find({"createdAt":{$gte:yesstartDate,$lte:yesendDate}});
 if(createNumberModule.length>0){
     resData.MonrningNumber=createNumberModule[0].numberMorning;
     resData.numberEvening=createNumberModule[0].numberEvening;
