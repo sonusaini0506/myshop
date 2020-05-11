@@ -257,10 +257,8 @@ if(createNumberModule.length>0){
            
     res.status(200).send(resData);
         }else{
-            var typeData=[];
-            var resData={"status":"404",
-        "data":typeData}
-    res.status(409).send(resData);
+            resData.status="404";
+    res.status(404).send(resData);
         }
     }catch (e){
         var resData={"status":"409"}
