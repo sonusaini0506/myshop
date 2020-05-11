@@ -1,7 +1,7 @@
 const GameModel = require('../models/game.model.js');
 const Gamenumber = require('../models/gamenumber.model.js');
 var moment = require('moment');
-module.exports={create,gameupdate,findGame,dashboard,findUserGame}
+module.exports={create,gameupdate,findGame,dashboard,findUserGame,findGameListAll,findGameListToday}
 async function create(req,res){
     // Validate request
     if(!req.body.mobile) {
