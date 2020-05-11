@@ -11,6 +11,7 @@ module.exports = (app) => {
    app.post('/games/findGameListAll',games.findGameListAll);
    app.post('/games/findGameListToday',games.findGameListToday);
    app.post('/games/findGamePayAmount',games.findGamePayAmount);
+   app.post('/games/OpenNumber',games.OpenNumber);
    
 
 
