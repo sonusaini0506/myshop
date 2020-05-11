@@ -7,6 +7,7 @@ module.exports = (app) => {
    app.post('/games/gameupdate', games.gameupdate);
    app.post('/games/dashboard',games.dashboard);
    app.post('/games/findUserGame',games.findUserGame);
+   app.post('/games/findGame',games.findGame);
    
 
 
