@@ -1,7 +1,7 @@
 const GameModel = require('../models/game.model.js');
 const Gamenumber = require('../models/gamenumber.model.js');
 var moment = require('moment');
-module.exports={create,gameupdate,findGame,dashboard,findUserGame,findGameListAll,findGameListToday}
+module.exports={create,gameupdate,findGame,dashboard,findUserGame,findGameListAll,findGameListToday,findGamePayAmount}
 async function create(req,res){
     // Validate request
     if(!req.body.mobile) {
@@ -341,7 +341,35 @@ res.status(409).send(resData);
  res.status(409).send(resData);
      }
      }
-     async function findGameListAll(req,res){
+
+ 
+async function findGamePayAmount(req,res){
+        try{
+    
+             var game;
+             
+         var startDate=req.body.todayDate+"T00:00:00.000+00:00";
+         var endDate=req.body.todayDate+"T23:59:59.000+00:00";
+         game =await GameModel.find({"createdAt":{$gte:startDate,$lte:endDate},"gameResult":"WIN"}); 
+         
+            
+                  if(game.length>0){
+                 var resData={"status":"200",
+                 "data":game}
+         res.status(200).send(resData);
+             }else{
+                 var resData={"status":"404",
+                 "data":[]}
+         res.status(404).send(resData);
+             }
+         }catch (e){
+             var resData={"status":"409",
+             "data":[]}
+     res.status(409).send(resData);
+         }
+         }     
+
+async function findGameListAll(req,res){
         try{
     
              var game;
