@@ -257,8 +257,22 @@ if(createNumberModule.length>0){
            
     res.status(200).send(resData);
         }else{
-            resData.status="404";
-    res.status(404).send(resData);
+            totalWingAmount=await gettotalwiningAmount();
+            var resData={"status":"200",
+            "data":game,
+        "totalWingAmount":totalWingAmount}
+
+            var yesstartDate=req.body.yesturdayDate+"T00:00:00.000+00:00";
+        var yesendDate=req.body.yesturdayDate+"T23:59:59.000+00:00";
+            var createNumberModule =await Gamenumber.find({"createdAt":{$gte:yesstartDate,$lte:yesendDate}});
+if(createNumberModule.length>0){
+resData.MonrningNumber=createNumberModule[0].numberMorning;
+resData.numberEvening=createNumberModule[0].numberEvening;
+}else{
+resData.MonrningNumber=0;
+resData.numberEvening=0;
+}
+res.status(200).send(resData);
         }
     }catch (e){
         var resData={"status":"409"}
