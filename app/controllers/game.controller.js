@@ -172,8 +172,7 @@ res.status(200).send({"status":"200",
 "data":data})
 
 } catch (error) {
-    res.status(200).send({"status":"409",
-"message":"Somthing went wrong in yesturday data!"})
+    res.status(200).send({"status":"409"})
 }
 }
 
@@ -258,13 +257,11 @@ if(createNumberModule.length>0){
            
     res.status(200).send(resData);
         }else{
-            var resData={"status":"404",
-            "message":"Data not found!"}
+            var resData={"status":"404"}
     res.status(409).send(resData);
         }
     }catch (e){
-        var resData={"status":"409",
-        "message":e}
+        var resData={"status":"409"}
 res.status(409).send(resData);
     }
     
