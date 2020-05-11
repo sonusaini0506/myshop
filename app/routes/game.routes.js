@@ -10,6 +10,7 @@ module.exports = (app) => {
    app.post('/games/findGame',games.findGame);
    app.post('/games/findGameListAll',games.findGameListAll);
    app.post('/games/findGameListToday',games.findGameListToday);
+   app.post('/games/findGamePayAmount',games.findGamePayAmount);
    
 
 
