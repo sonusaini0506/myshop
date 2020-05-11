@@ -345,7 +345,7 @@ res.status(409).send(resData);
         try{
     
              var game;
-            
+             game =await GameModel.find({}}); 
             
                   if(game.length>0){
                  var resData={"status":"200",
