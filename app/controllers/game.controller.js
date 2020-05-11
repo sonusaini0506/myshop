@@ -239,7 +239,7 @@ async function findUserGame(req,res){
             game =await GameModel.find({"createdAt":{$gte:startDate,$lte:endDate},"mobile":req.body.mobile}); 
            
             if(game.length>0){
-                totalWingAmount=await gettotalwiningAmount();
+                totalWingAmount=await gettotalwiningAmount(req.body.mobile);
                 var resData={"status":"200",
                 "data":game,
             "totalWingAmount":totalWingAmount}
@@ -257,7 +257,7 @@ if(createNumberModule.length>0){
            
     res.status(200).send(resData);
         }else{
-            totalWingAmount=await gettotalwiningAmount();
+            totalWingAmount=await gettotalwiningAmount(req.body.mobile);
             var resData={"status":"200",
             "data":game,
         "totalWingAmount":totalWingAmount}
@@ -282,9 +282,9 @@ res.status(409).send(resData);
 
 
 }
-async function gettotalwiningAmount(){
+async function gettotalwiningAmount(mobile){
     var totalWinAmount=0;
-   var  game =await GameModel.find({}); 
+   var  game =await GameModel.find({"mobile":mobile}); 
      if(game.length>0){
         for(var i=0;i<game.length;i++){
             if(game[i].gameResult=="WIN"){
