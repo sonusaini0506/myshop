@@ -8,6 +8,8 @@ module.exports = (app) => {
    app.post('/games/dashboard',games.dashboard);
    app.post('/games/findUserGame',games.findUserGame);
    app.post('/games/findGame',games.findGame);
+   app.post('/games/findGameListAll',games.findGameListAll);
+   app.post('/games/findGameListToday',games.findGameListToday);
    
 
 

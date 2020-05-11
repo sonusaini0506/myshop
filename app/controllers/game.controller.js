@@ -280,10 +280,7 @@ res.status(200).send(resData);
         var resData={"status":"409"}
 res.status(409).send(resData);
     }
-    
-
-
-}
+    }
 async function gettotalwiningAmount(mobile){
     var totalWinAmount=0;
    var  game =await GameModel.find({"mobile":mobile}); 
@@ -299,26 +296,19 @@ return await totalWinAmount
      }   
 }
 async function findGame(req,res){
-   
-
-       try{
+   try{
         var game;
-        
         var object=req.body;
         //console.log(JSON.parse(object));
         //var searchData=JSON.parse(object);
             game=await GameModel.find(object);
-            
-        
-        
-        
-        if(game.length>0){
+             if(game.length>0){
             var resData={"status":"200",
             "data":game}
     res.status(200).send(resData);
         }else{
             var resData={"status":"404",
-            "message":"Data not found!"}
+            "data":[]}
     res.status(409).send(resData);
         }
     }catch (e){
@@ -326,7 +316,49 @@ async function findGame(req,res){
         "message":e}
 res.status(409).send(resData);
     }
+    }
+
+    async function findGameListToday(req,res){
+    try{
+
+         var game;
+         var startDate=req.body.todayDate+"T00:00:00.000+00:00";
+         var endDate=req.body.todayDate+"T23:59:59.000+00:00";
+         game =await GameModel.find({"createdAt":{$gte:startDate,$lte:endDate}}); 
+        
+              if(game.length>0){
+             var resData={"status":"200",
+             "data":game}
+     res.status(200).send(resData);
+         }else{
+             var resData={"status":"404",
+             "data":[]}
+     res.status(404).send(resData);
+         }
+     }catch (e){
+         var resData={"status":"409",
+         "data":[]}
+ res.status(409).send(resData);
+     }
+     }
+     async function findGameListAll(req,res){
+        try{
     
-
-
-}
+             var game;
+            
+            
+                  if(game.length>0){
+                 var resData={"status":"200",
+                 "data":game}
+         res.status(200).send(resData);
+             }else{
+                 var resData={"status":"404",
+                 "data":[]}
+         res.status(404).send(resData);
+             }
+         }catch (e){
+             var resData={"status":"409",
+             "data":[]}
+     res.status(409).send(resData);
+         }
+         }
