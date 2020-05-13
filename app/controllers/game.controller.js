@@ -30,16 +30,16 @@ game.save()
         console.log("2");
         var resData={"status":"201",
             "message":"Registration game sucessfully!"}
-    res.status(201).send(resData);
+    res.status(200).send(resData);
     }else{
         console.log("3");
         var resData={"status":"409",
     "message":"Somthing went wrong!"}
-        res.status(201).send(resData);
+        res.status(200).send(resData);
     }
    
 }).catch(err => {
-    res.status(500).send({"status":"500",
+    res.status(200).send({"status":"500",
         message: err.message || "Some error occurred while creating the Note."
     });
 });
@@ -216,12 +216,12 @@ async function gameupdate(req, res){
         }else{
             var resData={"status":"404",
             "message":"Game not found!"}
-    res.status(404).send(resData);
+    res.status(200).send(resData);
         }
     }catch(e){
         var resData={"status":"409",
             "message":"Somthing went wrong!"}
-    res.status(409).send(resData);
+    res.status(200).send(resData);
 
     }
     
@@ -278,7 +278,7 @@ res.status(200).send(resData);
         }
     }catch (e){
         var resData={"status":"409"}
-res.status(409).send(resData);
+res.status(200).send(resData);
     }
     }
 async function gettotalwiningAmount(mobile){
@@ -309,12 +309,12 @@ async function findGame(req,res){
         }else{
             var resData={"status":"404",
             "data":[]}
-    res.status(409).send(resData);
+    res.status(200).send(resData);
         }
     }catch (e){
         var resData={"status":"409",
         "message":e}
-res.status(409).send(resData);
+res.status(200).send(resData);
     }
     }
 
@@ -333,12 +333,12 @@ res.status(409).send(resData);
          }else{
              var resData={"status":"404",
              "data":[]}
-     res.status(404).send(resData);
+     res.status(200).send(resData);
          }
      }catch (e){
          var resData={"status":"409",
          "data":[]}
- res.status(409).send(resData);
+ res.status(200).send(resData);
      }
      }
 
@@ -360,12 +360,12 @@ async function findGamePayAmount(req,res){
              }else{
                  var resData={"status":"404",
                  "data":[]}
-         res.status(404).send(resData);
+         res.status(200).send(resData);
              }
          }catch (e){
              var resData={"status":"409",
              "data":[]}
-     res.status(409).send(resData);
+     res.status(200).send(resData);
          }
          }     
 
@@ -386,12 +386,12 @@ async function findGameListAll(req,res){
              }else{
                  var resData={"status":"404",
                  "data":[]}
-         res.status(404).send(resData);
+         res.status(200).send(resData);
              }
          }catch (e){
              var resData={"status":"409",
              "data":[]}
-     res.status(409).send(resData);
+     res.status(200).send(resData);
          }
          }
 
@@ -424,7 +424,7 @@ async function OpenNumber(req,res){
              }catch (e){
                  var resData={"status":"409",
                  "data":[]}
-         res.status(409).send(resData);
+         res.status(200).send(resData);
              }
              }      
              
@@ -447,7 +447,7 @@ async function getOpenGame(req,res){
     var tt=totalminuts;
 
     if(!req.body.todayDate) {
-        return res.status(400).send({"status":"400",
+        return res.status(200).send({"status":"400",
         "morningNo":"0",
         "eveningNo":"0,",
         "minuts":tt
@@ -476,6 +476,6 @@ res.status(200).send(resData);
         "morningNo":"0",
         "eveningNo":"0",
         "minuts":""+tt}
-         res.status(409).send(resData);
+         res.status(200).send(resData);
     }
 }             

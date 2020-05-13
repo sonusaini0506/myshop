@@ -3,7 +3,7 @@ module.exports={create,forgotPassword,findUser,login}
 async function create(req,res){
     // Validate request
     if(!req.body.mobile) {
-        return res.status(400).send({"status":"400",
+        return res.status(200).send({"status":"400",
             message: "User mobile can not be empty"
         });
     }
@@ -25,16 +25,16 @@ user.save()
         console.log("2");
         var resData={"status":"201",
             "message":"Registration sucessfully!"}
-    res.status(201).send(resData);
+    res.status(200).send(resData);
     }else{
         console.log("3");
         var resData={"status":"409",
     "message":"Somthing went wrong!"}
-        res.status(201).send(resData);
+        res.status(200).send(resData);
     }
    
 }).catch(err => {
-    res.status(500).send({"status":"500",
+    res.status(200).send({"status":"500",
         message: err.message || "Some error occurred while creating the Note."
     });
 });
@@ -53,7 +53,7 @@ user.save()
 async function forgotPassword(req, res){
     // Validate Request
     if(!req.body.mobile) {
-        return res.status(400).send({status:"404",
+        return res.status(200).send({status:"404",
             message: "User mobile can not be empty"
         });
     }
@@ -74,12 +74,12 @@ async function forgotPassword(req, res){
         }else{
             var resData={"status":"404",
             "message":"User not found!"}
-    res.status(404).send(resData);
+    res.status(200).send(resData);
         }
     }catch(e){
         var resData={"status":"409",
             "message":"Somthing went wrong!"}
-    res.status(409).send(resData);
+    res.status(200).send(resData);
 
     }
     
@@ -87,12 +87,12 @@ async function forgotPassword(req, res){
 
 async function login(req,res){
     if(!req.body.mobile) {
-        return res.status(400).send({"status":"400",
+        return res.status(200).send({"status":"400",
             message: "User mobile can not be empty"
         });
     }
     if(!req.body.password) {
-        return res.status(400).send({"status":"400",
+        return res.status(200).send({"status":"400",
             message: "User password can not be empty"
         });
     }
@@ -106,12 +106,12 @@ async function login(req,res){
         }else{
             var resData={"status":"404",
             "message":"User not find"}
-    res.status(404).send(resData);
+    res.status(200).send(resData);
         }
     }catch (e){
         var resData={"status":"409",
         "message":"Somthin went wrong!"}
-res.status(409).send(resData);
+res.status(200).send(resData);
     }
     
 };
@@ -142,12 +142,12 @@ async function findUser(req,res){
         }else{
             var resData={"status":"404",
             "message":"User not found!"}
-    res.status(409).send(resData);
+    res.status(200).send(resData);
         }
     }catch (e){
         var resData={"status":"409",
         "message":e}
-res.status(409).send(resData);
+res.status(200).send(resData);
     }
     
 

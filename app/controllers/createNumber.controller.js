@@ -5,12 +5,12 @@ module.exports={create,findNumber}
 async function create(req,res){
     // Validate request
     if(!req.body.numberMorning) {
-        return res.status(400).send({"status":"400",
+        return res.status(200).send({"status":"400",
             message: "Morning Number can not be empty"
         });
     }
     if(!req.body.numberEvening) {
-        return res.status(400).send({"status":"400",
+        return res.status(200).send({"status":"400",
             message: "Evening Number can not be empty"
         });
     }
@@ -35,16 +35,16 @@ createNumberModule.save()
         console.log("2");
         var resData={"status":"201",
             "message":"Number create sucessfully!"}
-    res.status(201).send(resData);
+    res.status(200).send(resData);
     }else{
         console.log("3");
         var resData={"status":"409",
     "message":"Somthing went wrong!"}
-        res.status(201).send(resData);
+        res.status(200).send(resData);
     }
    
 }).catch(err => {
-    res.status(500).send({"status":"500",
+    res.status(200).send({"status":"500",
         message: err.message || "Some error occurred while creating the Note."
     });
 });
@@ -74,12 +74,12 @@ try {
    }else{
     var resData={"status":"404",
     "message":"Data not found!"}
-    res.status(404).send(resData);
+    res.status(200).send(resData);
    }
 
 } catch (error) {
     var resData={"status":"409",
     "message":"Somthing went wrong!"}
-    res.status(404).send(resData);
+    res.status(200).send(resData);
 }
 }   
