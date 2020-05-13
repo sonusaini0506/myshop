@@ -450,15 +450,14 @@ async function getOpenGame(req,res){
         });
     }
     try{
-        var game;
-                 var startDate=req.body.todayDate+"T00:00:00.000+00:00";
-                 var endDate=req.body.todayDate+"T23:59:59.000+00:00";
-                 game =await Gamenumber.find({"createdAt":{$gte:startDate,$lte:endDate},"gameResult":"Open","gameNumber":req.body.number,"typeAt":req.body.type}); 
-                 
-    if(game.length>0){
+        var gameData;
+        var yesstartDate=req.body.todayDate+"T00:00:00.000+00:00";
+        var yesendDate=req.body.todayDate+"T23:59:59.000+00:00";
+            var createNumberModule =await Gamenumber.find({"createdAt":{$gte:yesstartDate,$lte:yesendDate}});
+if(createNumberModule.length>0){
         var resData={"status":"200",
-                 "morningNo":game[0].numberMorning,
-                "eveningNo":game[0].numberEvening,
+                 "morningNo":createNumberModule[0].numberMorning,
+                "eveningNo":createNumberModule[0].numberEvening,
                 "minuts":""+totalminuts}
          res.status(409).send(resData);
     }else{
