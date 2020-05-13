@@ -450,7 +450,7 @@ async function getOpenGame(req,res){
         return res.status(400).send({"status":"400",
         "morningNo":"0",
         "eveningNo":"0,",
-        "minuts":""+tt
+        "minuts":tt
         });
     }
     try{
@@ -463,13 +463,13 @@ if(createNumberModule.length>0){
                  "morningNo":createNumberModule[0].numberMorning,
                 "eveningNo":createNumberModule[0].numberEvening,
                 "minuts":tt}
-         res.status(409).send(resData);
+         res.status(200).send(resData);
     }else{
         var resData={"status":"200",
         "morningNo":"90",
        "eveningNo":"12",
        "minuts":tt}
-res.status(409).send(resData);
+res.status(200).send(resData);
   }
                 }catch (e){
         var resData={"status":"409",
