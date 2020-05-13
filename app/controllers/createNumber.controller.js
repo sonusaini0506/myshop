@@ -25,7 +25,8 @@ if(createNumberModule<=0){
  const createNumberModule = new Gamenumber({
     numberEvening: req.body.numberEvening,
     numberMorning: req.body.numberMorning, 
-    createdBy: req.body.createdBy
+    createdBy: req.body.createdBy,
+
 });
 
 // Save Note in the database
@@ -50,10 +51,19 @@ createNumberModule.save()
 });
 }else{
     console.log("5");
+    var updateNumber=Gamenumber.updateOne({"_id":createNumberModule[0]._id},req.body)
+   if(updateNumber){
     var resData={"status":"200",
     "message":"Number already created!"}
     res.status(200).send(resData);
     }
+   else{
+    var resData={"status":"200",
+    "message":"Number already created!"}
+    res.status(200).send(resData);
+    }
+   }
+    
    };
 
 async function findNumber(req,res){
