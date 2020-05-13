@@ -50,15 +50,17 @@ createNumberModule.save()
     });
 });
 }else{
-    console.log("5");
+    console.log(req.body);
+
     var updateNumber=Gamenumber.updateOne({"_id":createNumberModule[0]._id},req.body)
-   if(updateNumber){
+    console.log(updateNumber);
+    if(updateNumber){
     var resData={"status":"200",
     "message":"Number already created!"}
     res.status(200).send(resData);
     }
    else{
-    var resData={"status":"200",
+    var resData={"status":"404",
     "message":"Number already created!"}
     res.status(200).send(resData);
     }
