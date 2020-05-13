@@ -370,6 +370,10 @@ async function findGamePayAmount(req,res){
          }     
 
 async function findGameListAll(req,res){
+    var date=moment().format('hh:mm:ss');
+    console.log(date);
+    var hr=date.split(':');
+    console.log(hr[0]+"::"+hr[1]+"::"+hr[2]);
         try{
     
              var game;
@@ -393,7 +397,7 @@ async function findGameListAll(req,res){
 
 async function OpenNumber(req,res){
             try{
-        
+        console.log("data",req.body);
                  var game;
                  var startDate=req.body.todayDate+"T00:00:00.000+00:00";
                  var endDate=req.body.todayDate+"T23:59:59.000+00:00";
@@ -409,10 +413,12 @@ async function OpenNumber(req,res){
 
 
 
-                     var resData={"status":"200"}
+                     var resData={"status":"200",
+                    "data":game}
              res.status(200).send(resData);
                  }else{
-                     var resData={"status":"404"}
+                     var resData={"status":"404",
+                    "data":[]}
              res.status(404).send(resData);
                  }
              }catch (e){
