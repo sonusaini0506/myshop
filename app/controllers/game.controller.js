@@ -1,7 +1,7 @@
 const GameModel = require('../models/game.model.js');
 const Gamenumber = require('../models/gamenumber.model.js');
 var moment = require('moment');
-module.exports={create,gameupdate,findGame,dashboard,findUserGame,findGameListAll,findGameListToday,findGamePayAmount,OpenNumber}
+module.exports={create,gameupdate,findGame,dashboard,findUserGame,findGameListAll,findGameListToday,findGamePayAmount,OpenNumber,getOpenGame}
 async function create(req,res){
     // Validate request
     if(!req.body.mobile) {
@@ -426,4 +426,53 @@ async function OpenNumber(req,res){
                  "data":[]}
          res.status(409).send(resData);
              }
-             }         
+             }      
+             
+async function getOpenGame(req,res){
+    if(!req.body.todayDate) {
+        return res.status(400).send({"status":"400",
+            message: "Today Date can not be empty"
+        });
+    }
+    var date=moment().format('hh:mm:ss');
+    console.log(date);
+    var hr=date.split(':');
+    console.log(hr[0]+"::"+hr[1]+"::"+hr[2]);
+    var hrr=Number(hr[0]-6);
+    var minuts=Number(hr[1]);
+    var totalminuts=(hrr*60)+minuts;
+    console.log("total time",totalminuts);
+    if(!req.body.todayDate) {
+        return res.status(400).send({"status":"400",
+        "morningNo":"0",
+        "eveningNo":"0,",
+        "minuts":""+totalminuts
+        });
+    }
+    try{
+        var game;
+                 var startDate=req.body.todayDate+"T00:00:00.000+00:00";
+                 var endDate=req.body.todayDate+"T23:59:59.000+00:00";
+                 game =await GameModel.find({"createdAt":{$gte:startDate,$lte:endDate},"gameResult":"Open","gameNumber":req.body.number,"typeAt":req.body.type}); 
+                 
+    if(game.length>0){
+        var resData={"status":"200",
+                 "morningNo":game[0].numberMorning,
+                "eveningNo":game[0].numberEvening,
+                "minuts":""+totalminuts}
+         res.status(409).send(resData);
+    }else{
+        var resData={"status":"200",
+        "morningNo":90,
+       "eveningNo":12,
+       "minuts":""+totalminuts}
+res.status(409).send(resData);
+  }
+                }catch (e){
+        var resData={"status":"409",
+        "morningNo":"0",
+        "eveningNo":"0",
+        "minuts":""+totalminuts}
+         res.status(409).send(resData);
+    }
+}             
