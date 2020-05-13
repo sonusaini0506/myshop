@@ -50,13 +50,13 @@ createNumberModule.save()
     });
 });
 }else{
-    console.log(req.body);
+    console.log(createNumberModule[0]._id);
 
-    var updateNumber=Gamenumber.updateOne({"_id":createNumberModule[0]._id},req.body)
+    var updateNumber=Gamenumber.updateOne({"_id":createNumberModule[0]._id},{"numberMorning":req.body.numberMorning,"numberEvening":req.body.numberEvening,"payAmount":req.body.payAmount})
     console.log(updateNumber);
     if(updateNumber){
     var resData={"status":"200",
-    "message":"Number already created!"}
+    "message":"Number  created!"}
     res.status(200).send(resData);
     }
    else{
