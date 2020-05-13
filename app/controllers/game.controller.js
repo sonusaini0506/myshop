@@ -462,13 +462,13 @@ if(createNumberModule.length>0){
         var resData={"status":"200",
                  "morningNo":createNumberModule[0].numberMorning,
                 "eveningNo":createNumberModule[0].numberEvening,
-                "minuts":""+tt}
+                "minuts":tt}
          res.status(409).send(resData);
     }else{
         var resData={"status":"200",
-        "morningNo":90,
-       "eveningNo":12,
-       "minuts":""+tt}
+        "morningNo":"90",
+       "eveningNo":"12",
+       "minuts":tt}
 res.status(409).send(resData);
   }
                 }catch (e){
