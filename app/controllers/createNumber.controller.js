@@ -52,7 +52,7 @@ createNumberModule.save()
 }else{
     console.log("id",createNumberModule[0]._id);
 var id=createNumberModule[0]._id;
-    var updateNumber=Gamenumber.updateOne({"_id":id},req.body)
+    var updateNumber=Gamenumber.updateOne({"_id":id},{"numberMorning":req.body.numberMorning})
     console.log(updateNumber);
     if(updateNumber){
     var resData={"status":"200",
