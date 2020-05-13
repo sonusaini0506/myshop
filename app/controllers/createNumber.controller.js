@@ -51,8 +51,8 @@ createNumberModule.save()
 });
 }else{
     console.log("id",createNumberModule[0]._id);
-
-    var updateNumber=Gamenumber.update({"_id":createNumberModule[0]._id},{"numberMorning":req.body.numberMorning,"numberEvening":req.body.numberEvening,"payAmount":req.body.payAmount})
+var id=createNumberModule[0]._id;
+    var updateNumber=Gamenumber.update({"_id":id},req.body)
     console.log(updateNumber);
     if(updateNumber){
     var resData={"status":"200",
