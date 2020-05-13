@@ -5,7 +5,7 @@ const GamenumberSchema = mongoose.Schema({
     createdBy: String,
     payAmount:{type:String,default:"8"},
     status:{type:Boolean,default:true},
-    created_At:{ type: Date, required: true, default: Date.now }
+    created_At:{ type: Date,default: Date.now }
 }, {
     timestamps: true
 });
