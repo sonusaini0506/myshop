@@ -441,7 +441,7 @@ async function getOpenGame(req,res){
     var hrr=Number(hr[0]);
     var minuts=Number(hr[1]);
     var totalminuts=(hrr*60)+minuts;
-    console.log("total time",Number(totalminuts-330));
+    console.log("total time",Number(totalminuts-393));
     var tt=totalminuts-330;
 
     if(!req.body.todayDate) {
