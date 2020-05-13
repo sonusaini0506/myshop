@@ -419,7 +419,7 @@ async function OpenNumber(req,res){
                  }else{
                      var resData={"status":"404",
                     "data":[]}
-             res.status(404).send(resData);
+             res.status(200).send(resData);
                  }
              }catch (e){
                  var resData={"status":"409",
