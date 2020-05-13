@@ -437,16 +437,18 @@ async function getOpenGame(req,res){
     var date=moment().format('hh:mm:ss');
     console.log(date);
     var hr=date.split(':');
-    console.log(hr[0]+"::"+hr[1]+"::"+hr[2]);
+    console.log("::::::"+hr[0]+"::"+hr[1]+"::"+hr[2]);
     var hrr=Number(hr[0]-6);
     var minuts=Number(hr[1]);
     var totalminuts=(hrr*60)+minuts;
-    console.log("total time",totalminuts);
+    console.log("total time",Number(totalminuts+330));
+    var tt=totalminuts+330;
+
     if(!req.body.todayDate) {
         return res.status(400).send({"status":"400",
         "morningNo":"0",
         "eveningNo":"0,",
-        "minuts":""+totalminuts
+        "minuts":""+tt
         });
     }
     try{
@@ -458,20 +460,20 @@ if(createNumberModule.length>0){
         var resData={"status":"200",
                  "morningNo":createNumberModule[0].numberMorning,
                 "eveningNo":createNumberModule[0].numberEvening,
-                "minuts":""+totalminuts}
+                "minuts":""+tt}
          res.status(409).send(resData);
     }else{
         var resData={"status":"200",
         "morningNo":90,
        "eveningNo":12,
-       "minuts":""+totalminuts}
+       "minuts":""+tt}
 res.status(409).send(resData);
   }
                 }catch (e){
         var resData={"status":"409",
         "morningNo":"0",
         "eveningNo":"0",
-        "minuts":""+totalminuts}
+        "minuts":""+tt}
          res.status(409).send(resData);
     }
 }             
