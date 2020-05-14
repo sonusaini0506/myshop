@@ -1,4 +1,5 @@
 const express = require('express');
+var cron = require('node-cron');
 const path=require('path')
 var fs = require('fs');
 const bodyParser = require('body-parser');
@@ -44,6 +45,18 @@ require('./app/routes/user.routes.js')(app);
 require('./app/routes/game.routes.js')(app);
 require('./app/routes/createnumber.routes.js')(app);
 
+//# ┌────────────── second (optional)
+//# │ ┌──────────── minute
+//# │ │ ┌────────── hour
+//# │ │ │ ┌──────── day of month
+//# │ │ │ │ ┌────── month
+//# │ │ │ │ │ ┌──── day of week
+//# │ │ │ │ │ │
+//# │ │ │ │ │ │
+//# * * * * * *
+cron.schedule('* 1 * * *', () => {
+    console.log('running a task every minute');
+  });
 // listen for requests
 app.listen(PORT, () => {
     console.log("Server is listening on port 3000");
