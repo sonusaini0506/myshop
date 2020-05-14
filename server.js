@@ -1,5 +1,5 @@
 const express = require('express');
-var cron = require('node-cron');
+var CronJob = require('cron').CronJob;
 const path=require('path')
 var fs = require('fs');
 const bodyParser = require('body-parser');
@@ -54,9 +54,10 @@ require('./app/routes/createnumber.routes.js')(app);
 //# │ │ │ │ │ │
 //# │ │ │ │ │ │
 //# * * * * * *
-cron.schedule('* 1 * * *', () => {
-    console.log('running a task every minute');
-  });
+var jobAM = new CronJob('* 1 * * * *', function() {
+    console.log('You will see this message every second');
+  }, null, true, 'America/Los_Angeles');
+  jobAM.start();
 // listen for requests
 app.listen(PORT, () => {
     console.log("Server is listening on port 3000");
