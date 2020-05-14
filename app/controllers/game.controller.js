@@ -430,11 +430,11 @@ async function OpenNumber(req,res){
              
 async function getOpenGame(req,res){
     if(!req.body.todayDate) {
-        return res.status(400).send({"status":"400",
+        return res.status(200).send({"status":"400",
             message: "Today Date can not be empty"
         });
     }
-    var date=moment().format('hh:mm:ss');
+    var date=moment().format('HH:MM:SS');
     console.log(date);
     var hr=date.split(':');
     console.log("::::::"+hr[0]+"::"+hr[1]+"::"+hr[2]);
