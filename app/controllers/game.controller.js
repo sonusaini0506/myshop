@@ -462,12 +462,14 @@ if(createNumberModule.length>0){
         var resData={"status":"200",
                  "morningNo":createNumberModule[0].numberMorning,
                 "eveningNo":createNumberModule[0].numberEvening,
+                "payAmount":createNumberModule[0].payAmount,
                 "minuts":tt}
          res.status(200).send(resData);
     }else{
         var resData={"status":"200",
         "morningNo":"90",
        "eveningNo":"12",
+       "payAmount":"70",
        "minuts":tt}
 res.status(200).send(resData);
   }
@@ -475,6 +477,7 @@ res.status(200).send(resData);
         var resData={"status":"409",
         "morningNo":"0",
         "eveningNo":"0",
+        "payAmount":"70",
         "minuts":""+tt}
          res.status(200).send(resData);
     }
